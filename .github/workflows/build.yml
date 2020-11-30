@@ -12,7 +12,7 @@ jobs:
     name: Upload Release Asset
     steps:
       - name: Install brew deps
-        run: brew install cmake luarocks pkg-config gettext libtermkey libuv libvterm luajit msgpack unibilium
+        run: brew install cmake luarocks pkg-config gettext libtermkey libuv libvterm luajit msgpack unibilium automake coreutils
       - name: Checkout code
         uses: actions/checkout@v2
         with:
