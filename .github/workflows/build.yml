@@ -1,9 +1,9 @@
 name: Neovim Builder
 on:
   workflow_dispatch:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '* */6 * * *'
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   - cron:  '* */6 * * *'
 
 jobs:
   build:
@@ -23,10 +23,8 @@ jobs:
             make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX:PATH="
           else
             make CMAKE_BUILD_TYPE=Release \
-                 CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX:PATH="
+                 CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX:PATH= -DCMAKE_OSX_DEPLOYMENT_TARGET=10.11"
           fi
-
-          make install
 
           zip -r nightly-mac build
       - name: Create Release
